@@ -1,85 +1,148 @@
 <template>
-  <div >
-    <div class="main-content-wrapper"> <h1>Графіті</h1>
-    </div>
-    <p class="p">Культура графіті — це вуличне мистецтво, що виникло в кінці 1960-х років у Нью-Йорку як спосіб самовираження, що розвинувся від простих написання псевдонімів ("тегів") до складних, стилізованих зображень. 
+  <div class="app-container">
+    <!-- Основний контент -->
+    <main class="content">
+      <h1 class="title">Графіті</h1>
+      <p class="text">
+        Культура графіті — це вуличне мистецтво, що виникло в кінці 1960-х років у Нью-Йорку як спосіб самовираження, що розвинувся від простих написання псевдонімів ("тегів") до складних, стилізованих зображень.
       </p>
-      <div><h3>Графіті не пішло від Фрески!</h3>
-      <img alt="fresca" src="https://decorcdn.com/img/catalog-240/freska-2025.jpg">
-      <img alt="graffiti" src="https://tvoemisto.tv/media/gallery/full/c/o/collage2_e8754.jpg">
+
+      <section class="comparison">
+        <h3>Графіті не пішло від фрески</h3>
+        <div class="images">
+          <img src="https://decorcdn.com/img/catalog-240/freska-2025.jpg" alt="Фреска" class="comparison-image">
+          <img src="https://tvoemisto.tv/media/gallery/full/c/o/collage2_e8754.jpg" alt="Графіті" class="comparison-image">
+        </div>
+        <p>Фрески — стародавня техніка живопису на стінах, яка існувала тисячі років.</p>
+        <p>Графіті: Термін "графіті" походить від італійського "graffiti", що означає "надряпані". Це стосується найдавніших написів, зроблених гострими предметами. Сучасне вуличне графіті з'явилося у 20-му столітті.</p>
+      </section>
+    </main>
+
+    <!-- Футер -->
+    <footer class="footer">
+      <div class="footer-sections">
+        <section class="footer-section">
+          <h3 class="footer-title">🎨 Залишай свій слід</h3>
+          <p>Маєш стінопис або ідею для нашого сайту?</p>
+          <p>
+            Надсилай творчість на: 
+            <a href="mailto:submit@grafiti-project.com" class="footer-link">submit@grafiti-project.com</a>
+          </p>
+        </section>
+
+        <section class="footer-section">
+          <h3 class="footer-title">🔗 Поділись посиланням</h3>
+          <p>Встав URL свого графіті (Imgur, Instagram тощо):</p>
+          <form @submit.prevent="submitUrl" class="url-form">
+            <input type="url" v-model="imageUrl" placeholder="Вставте URL..." required class="url-input">
+            <button type="submit" class="url-submit">Надіслати</button>
+          </form>
+          <p v-if="submissionMessage" class="submission-message">{{ submissionMessage }}</p>
+        </section>
       </div>
-      <p> Фрески: Це стародавня техніка живопису на стінах, яка існувала тисячі років.</p>
-
-      <p> 
-Графіті: Термін "графіті" походить від італійського "graffiti", що означає "надряпані". Це стосується найдавніших написів, зроблених гострими предметами. Сучасне вуличне графіті, як субкультура, з'явилося у 20-му столітті. </p>
+      <div class="footer-bottom">
+        &copy; {{ currentYear }} Graffiti Project трохи використовував нейросеть бо я тупий
+      </div>
+    </footer>
   </div>
-
 </template>
-
-<script>
-export default {
-  name: 'HelloWorld',
-  props: {
-    msg: String
-  }
-}
-</script>
 
 <style scoped>
 
-img {
-  height: 200px;
-
+.app-container {
+  font-family: Arial, sans-serif;
+  color: #222;
+  background-color:rgba(249, 249, 249, 0.41);
+  line-height: 1.5;
+  max-width: 900px;
+  margin: 0 auto;
+  padding: 20px;
 }
 
-p{
+.title {
+  font-size: 32px;
+  margin-bottom: 15px;
+}
+.text {
+  font-size: 16px;
+  margin-bottom: 15px;
+}
 
-  font-size: 25px;
+.comparison {
+  margin-top: 20px;
+}
+
+.images {
+  display: flex;
+  gap: 15px;
+  margin: 10px 0;
+}
+
+.comparison-image {
+  width: 100%;
+  max-width: 400px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+
+.footer-sections {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 20px;
+  justify-content: space-between;
   
-  color:rgb(255, 255, 255); /* основний колір */
-  text-transform: uppercase;
-  text-shadow:
-    -2px -2px 0 #000,
-     2px -2px 0 #000,
-    -2px  2px 0 #000,
-     2px  2px 0 #000,
-     0  0 10px #f71909,
-     0  0 20px #ff9100;
-
 }
 
-
-.p{
-  font-family: 'Comic Sans MS', 'Impact', cursive; /* або підключи свій шрифт */
-  font-size: 30px;
-  font-weight: 900px;
-  color: #03ffc0; /* основний колір */
-  text-transform: uppercase;
-  text-shadow:
-    -2px -2px 0 #000,
-     2px -2px 0 #000,
-    -2px  2px 0 #000,
-     2px  2px 0 #000,
-     0  0 10px #f71909,
-     0  0 20px #ff9100;
-  letter-spacing: 3px;
-  transition: transform 0.3s ease, text-shadow 0.3s ease;
-}
-h3 {
-  margin: 40px 0 0;
-}
-ul {
-  list-style-type: none;
-  padding: 0;
-}
-li {
-  display: inline-block;
-  margin: 0 10px;
-}
-a {
-  color: #42b983;
+.footer-section {
+  flex: 1;
+  min-width: 200px;
+  
 }
 
+.footer-title {
+  font-weight: bold;
+  margin-bottom: 8px;
+  font-size: 16px;
+  
+}
 
+.footer-link {
+  color:rgb(255, 0, 0);
+  text-decoration: none;
+  
+}
 
+.url-form {
+  margin-top: 5px;
+}
+
+.url-input {
+  width: 100%;
+  padding: 8px;
+  margin-bottom: 8px;
+  border-radius: 4px;
+  border: 1px solid #ccc;
+}
+
+.url-submit {
+  padding: 8px 12px;
+  border: none;
+  border-radius: 4px;
+  background-color:#a35c22;
+  color: #222;
+  cursor: pointer;
+  
+}
+
+.url-submit:hover {
+  background-color:rgb(190, 169, 83);
+  
+}
+
+.footer-bottom {
+  text-align: center;
+  margin-top: 15px;
+  font-size: 14px;
+}
 </style>
